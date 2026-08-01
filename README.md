@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 This installs: pandas, numpy, scikit-learn, xgboost, torch, matplotlib.
 (If you don't have a GPU, torch will run on CPU automatically — it'll
-just be slower for the LSTM/KAN steps. See the speed tips below.)
+just be slower for the LSTM/KAN steps.
 
 ## 2. Add the data
 
@@ -38,8 +38,8 @@ python -m src.main
 
 This will:
 1. Consolidate all `.psv` files into one dataframe (cached afterwards to
-   `data/processed_sepsis.csv` so you don't have to re-parse next time —
-   delete that file, or pass `--force-reload`, if you change the raw data).
+   `data/processed_sepsis.csv` no need to re-parse next time —
+   delete that file, or pass `--force-reload`, if changed the raw data).
 2. Engineer features: missingness flags, per-patient forward-fill, and
    rolling-window statistics (mean/std/min/max over the past 8 hours).
 3. Split **by patient** (not by row) into train/val/test so no patient's
@@ -51,10 +51,10 @@ This will:
 ### Useful flags
 
 ```bash
-# Quick test run on a small subset of patients (much faster)
+# Quick test run on a small subset of patients
 python -m src.main --max-patients 2000
 
-# Skip the slower deep learning models while you're debugging
+# Skip the slower deep learning models while debugging
 python -m src.main --max-patients 2000 --skip-lstm --skip-kan
 
 # Re-parse raw .psv files even if a cached CSV already exists
